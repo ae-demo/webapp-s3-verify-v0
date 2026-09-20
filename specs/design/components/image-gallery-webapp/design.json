@@ -7,11 +7,48 @@
   "appPath": "image-gallery-webapp",
   "entrypoint": "deployment/web-application",
   "exposure": "internet",
-  "dependencies": [
-    { "kind": "component", "name": "image-api" },
-    { "kind": "platform-resource", "name": "user-auth", "resourceType": "thunder-app" }
+  "stories": [
+    1,
+    2,
+    3,
+    4
   ],
   "description": "Single-page app where a signed-in user uploads an image (via a presigned URL from image-api, uploaded directly to S3) and browses a gallery of the images they've previously uploaded. Holds no AWS credentials and never proxies image bytes itself — all metadata and presigned URLs come from image-api.",
-  "stories": [1, 2, 3, 4],
-  "skillsPinned": ["wireframes", "react-webapp", "oxygen-ui-design-system", "thunder-authentication"]
+  "dependencies": [
+    {
+      "kind": "component",
+      "name": "image-api",
+      "wiring": {
+        "endpoint": {
+          "component": "webapp-s3-verify-v0-image-api",
+          "name": "http",
+          "visibility": "project",
+          "envBindings": {
+            "address": "IMAGE_API_URL"
+          }
+        }
+      }
+    },
+    {
+      "kind": "platform-resource",
+      "name": "user-auth",
+      "resourceType": "thunder-app",
+      "wiring": {
+        "ref": "webapp-s3-verify-bd5b5d73",
+        "envBindings": {
+          "client_id": "USER_AUTH_CLIENT_ID",
+          "issuer": "USER_AUTH_ISSUER",
+          "jwks_url": "USER_AUTH_JWKS_URL",
+          "resource": "USER_AUTH_RESOURCE",
+          "scopes": "USER_AUTH_SCOPES"
+        }
+      }
+    }
+  ],
+  "skillsPinned": [
+    "wireframes",
+    "react-webapp",
+    "oxygen-ui-design-system",
+    "thunder-authentication"
+  ]
 }
