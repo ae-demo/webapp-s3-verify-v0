@@ -1,0 +1,17 @@
+{
+  "name": "image-gallery-webapp",
+  "type": "web-application",
+  "version": "0.1.0",
+  "language": "TypeScript",
+  "buildpack": "docker",
+  "appPath": "image-gallery-webapp",
+  "entrypoint": "deployment/web-application",
+  "exposure": "internet",
+  "dependencies": [
+    { "kind": "component", "name": "image-api" },
+    { "kind": "platform-resource", "name": "user-auth", "resourceType": "thunder-app" }
+  ],
+  "description": "Single-page app where a signed-in user uploads an image (via a presigned URL from image-api, uploaded directly to S3) and browses a gallery of the images they've previously uploaded. Holds no AWS credentials and never proxies image bytes itself — all metadata and presigned URLs come from image-api.",
+  "stories": [1, 2, 3, 4],
+  "skillsPinned": ["wireframes", "react-webapp", "oxygen-ui-design-system", "thunder-authentication"]
+}

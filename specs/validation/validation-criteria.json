@@ -1,0 +1,49 @@
+{
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "statement": "A user signs in to the application so that their uploads are kept private to them",
+      "stories": [1],
+      "criteria": [
+        { "id": "AC-001-a", "must": "An unauthenticated visitor is prompted to sign in before reaching the upload or gallery views", "method": "e2e" },
+        { "id": "AC-001-b", "must": "After signing in, the user reaches the application as themselves", "method": "e2e" }
+      ]
+    },
+    {
+      "id": "REQ-002",
+      "statement": "A signed-in user can upload an image so that it is stored and available to view later",
+      "stories": [2],
+      "criteria": [
+        { "id": "AC-002-a", "must": "A signed-in user can select an image file and submit it for upload", "method": "e2e" },
+        { "id": "AC-002-b", "must": "After a successful upload, the image is stored and persists across sessions", "method": "e2e" },
+        { "id": "AC-002-c", "must": "The uploaded image is associated only with the user who uploaded it", "method": "e2e" }
+      ]
+    },
+    {
+      "id": "REQ-003",
+      "statement": "A signed-in user can see a gallery of all images they have previously uploaded",
+      "stories": [3],
+      "criteria": [
+        { "id": "AC-003-a", "must": "The gallery lists every image the signed-in user has previously uploaded", "method": "e2e" },
+        { "id": "AC-003-b", "must": "The gallery does not list images uploaded by a different user", "method": "e2e" }
+      ]
+    },
+    {
+      "id": "REQ-004",
+      "statement": "A signed-in user can view an individual uploaded image at full size",
+      "stories": [4],
+      "criteria": [
+        { "id": "AC-004-a", "must": "Selecting an image from the gallery opens a full-size view of that image", "method": "e2e" },
+        { "id": "AC-004-b", "must": "The full-size view shows more detail than the gallery thumbnail", "method": "manual" }
+      ]
+    },
+    {
+      "id": "REQ-005",
+      "statement": "Uploaded images are private per user, with no sharing or cross-user visibility",
+      "stories": [3],
+      "criteria": [
+        { "id": "AC-005-a", "must": "A user cannot access another user's uploaded image via its gallery or detail view", "method": "e2e" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": 3,
+  "permissions": [
+    {
+      "resource": "images",
+      "component": "image-api",
+      "description": "Uploaded images and their metadata",
+      "actions": [
+        { "handle": "read", "description": "The caller's own uploaded images" },
+        { "handle": "upload", "description": "Request an upload URL and record a new image" }
+      ]
+    }
+  ],
+  "groups": [
+    { "name": "ImageUsers", "description": "Everyone who uploads and views their own images in the gallery" }
+  ],
+  "roles": [
+    {
+      "name": "User",
+      "description": "Uploads images and views their own gallery.",
+      "stories": [1, 2, 3, 4],
+      "grants": ["images:read", "images:upload"],
+      "assignTo": ["ImageUsers"]
+    }
+  ],
+  "testUsers": [
+    { "username": "test-user", "roles": ["User"] },
+    { "username": "test-user-2", "roles": ["User"] }
+  ]
+}

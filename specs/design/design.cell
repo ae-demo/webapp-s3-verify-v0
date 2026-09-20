@@ -1,0 +1,17 @@
+title Image Upload & Gallery
+
+component image-gallery-webapp as "Image Gallery" web-application
+component image-api as "Image API" service
+component image-db as "Image Metadata DB" database
+
+east user-auth as "Thunder Auth" identity-server
+south aws-s3 as "Amazon S3" service
+
+north -> image-gallery-webapp
+
+image-gallery-webapp -> image-api
+image-gallery-webapp -> user-auth
+
+image-api -> user-auth
+image-api -> image-db
+image-api -> aws-s3
